@@ -1,80 +1,138 @@
-# Sanctuary AI – Smart Lighting Automation
+# Sanctuary AI – Smart Lighting Prototype
 
-# Local AI-Powered Smart Home Prototype
+**Local AI-Powered Smart Home Automation | Home Assistant + Ollama + Qwen3**
 
-A working proof-of-concept integrating **Home Assistant**, **Ollama**, and **Qwen3 4B Instruct** to control simulated smart lighting systems using natural-language commands.
+A working software proof of concept demonstrating how a locally hosted AI model can interpret natural-language commands and control simulated smart lighting through Home Assistant.
+
+**Developed by:** Jojo Jose  
+**Designation:** Manager – Controls & Automation
 
 ## Project Overview
 
-This project demonstrates how a locally hosted large language model can interpret user requests and control lighting entities, dimming levels, and predefined scenes through Home Assistant.
+This project explores the integration of artificial intelligence with residential lighting automation.
 
-The prototype is inspired by real-world lighting control systems, including Philips Dynalite.
+The objective is to demonstrate how conversational AI can simplify everyday interactions with smart home systems, including lighting dimming, scene selection, bedtime routines, and multiroom control.
+
+The prototype combines Home Assistant's automation capabilities with a locally hosted Qwen3 language model through Ollama.
 
 ## System Architecture
 
-User Command → Home Assistant Assist → Ollama / Qwen3 → Home Assistant Actions → Virtual Lighting Devices
+```text
+User's Natural-Language Command
+              |
+              v
+     Home Assistant Assist
+              |
+              v
+      Ollama Local API
+       Qwen3 4B Instruct
+              |
+              v
+   Home Assistant Actions
+              |
+              v
+ Virtual Lighting and Scenes
+```
 
-## Features
+The AI interprets the user's request and selects appropriate Home Assistant actions. Home Assistant handles the actual entity control and automation logic.
 
-- Natural-language lighting control
-- Virtual dimming from 0–100%
-- Bedroom and living room lighting control
-- Relax scene at 40% brightness
-- Movie scene at 10% brightness
-- AI-driven lighting scene selection
-- Multiroom lighting control
-- Bedtime automation using Sleep Mode
+## Working Demonstrations
+
+| Demonstration | Command / Action | Result |
+|---|---|---|
+| AI Lighting Dimming | Set living room lighting to 50% | Virtual dimmer adjusts to 50% |
+| Movie Mode | Activate living room Movie Mode | Predefined scene sets lighting to 10% |
+| Bedtime Automation | "Buddy, I'm going to bed" | Sleep Mode activates and bedroom lighting switches off |
+| Multiroom Control | "I'm leaving home. Turn off all the lights" | Exposed bedroom and living room lights switch off |
+
+These demonstrations were tested in the Home Assistant environment and captured in screen recordings.
 
 ## Technology Stack
 
-| Technology | Purpose |
+| Technology | Application |
 |---|---|
-| Home Assistant OS | Automation platform |
-| Oracle VirtualBox | Virtual machine environment |
-| Ollama | Local AI inference and API |
+| Home Assistant OS | Smart home automation platform |
+| Oracle VirtualBox | Virtualized Home Assistant environment |
+| Ollama | Local AI model hosting and HTTP API |
 | Qwen3 4B Instruct | Natural-language interpretation |
-| YAML | Automation and service configuration |
-| Jinja2 | Dynamic lighting templates |
-| Home Assistant Scenes | Preset-based lighting control |
+| YAML | Lighting, scene, and automation configuration |
+| Jinja2 | Virtual lighting template logic |
+| Home Assistant Assist | Conversational interaction |
 
-## Example Commands
+## Implementation Details
 
-**Movie Mode**
+### Virtual Lighting Control
 
-"I'm going to watch a movie in the living room. Choose the appropriate lighting scene and activate it."
+A template-based virtual light represents a dimmable lighting channel.
 
-Result: The AI activates the Movie Mode scene and sets the virtual living room lighting to 10%.
+An input-number helper stores the dimming level, and template logic maps the brightness values used by Home Assistant to a percentage-based representation.
 
-**Multiroom Control**
+### Scene Automation
 
-"I'm leaving home. Turn off all the lights."
+Predefined Home Assistant scenes provide lighting presets, including:
 
-Result: The AI switches off the exposed bedroom and living room lights.
+- Movie Mode: 10% brightness
+- Relax Mode: 40% brightness
 
-**Bedtime Automation**
+### Bedtime Automation
 
-"Buddy, I'm going to bed. Please get my bedroom ready."
+A virtual Sleep Mode switch triggers a Home Assistant automation that turns off the bedroom lighting.
 
-Result: Sleep Mode is activated, triggering the bedroom lighting automation.
+### Local AI Integration
 
-## Current Scope
+Ollama hosts the Qwen3 model locally and exposes an HTTP API.
 
-This is a software-based prototype using simulated lighting entities. No physical lighting controllers or sensors are connected at this stage.
+Home Assistant uses an Ollama conversation agent through its Assist pipeline to interpret requests and interact with exposed lighting entities, scenes, and automation controls.
 
-## Planned Enhancements
+The AI operates locally without requiring a cloud-hosted language model for inference.
 
-- Occupancy-based automation
-- HVAC and curtain control
-- Sensor and energy monitoring
-- Physical Philips Dynalite integration through a compatible gateway
-- More advanced context-aware AI automation
+## Repository Contents
+
+```text
+sanctuary-ai-smart-lighting/
+├── README.md
+├── home-assistant/
+│   ├── living-room-dimmer.yaml
+│   ├── living-room-template-light.yaml
+│   └── living-room-scenes.yaml
+└── ollama/
+    └── ai-integration.md
+```
+
+The YAML files document selected configuration components used in the prototype. They are reference examples rather than a complete, independently tested installation package.
 
 ## Project Demonstration
 
-Demo video: Coming soon.
+**Video:** Coming soon.
 
-## Author
+The demonstration video covers AI dimming, scene activation, bedtime automation, and multiroom lighting control.
 
-Controls and Automation professional with experience in Philips Dynalite, KNX, DALI, BACnet, and building automation systems.
+## Current Limitations
 
-This project explores how locally hosted AI can enhance conventional lighting control and smart-building interfaces.
+This prototype uses simulated lighting devices.
+
+No physical lighting controllers, environmental sensors, or HVAC equipment are connected.
+
+Natural-language interpretation depends on the local language model and may require explicit commands for reliable scene selection.
+
+## Future Development
+
+Potential extensions include:
+
+- Integration with physical Philips Dynalite lighting controllers
+- Indoor air-quality and occupancy monitoring
+- HVAC and curtain automation
+- Energy monitoring and reporting
+- More advanced context-aware automation
+- Evaluation of wellness-oriented lighting and environmental control strategies
+
+## About the Developer
+
+**Jojo Jose**  
+**Manager – Controls & Automation**
+
+Over eight years of professional experience in lighting control, building automation, and system integration.
+
+Technical experience includes Philips Dynalite, KNX, DALI, BACnet, Zigbee, Z-wave, Matter,IoT lighting automation, and building management system integration.
+
+This project represents an exploration of how practical building automation experience can be combined with locally hosted AI to develop more intuitive smart home systems.
