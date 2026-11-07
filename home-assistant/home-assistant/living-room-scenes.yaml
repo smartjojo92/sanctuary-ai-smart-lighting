@@ -1,0 +1,21 @@
+
+# Virtual Dynalite-style lighting presets
+# Scene examples for Home Assistant.
+#
+# Preset 2: Relax - 40%
+# Preset 3: Movie - 10%
+
+scene:
+  - name: Living Room Relax
+    id: living_room_relax
+    entities:
+      light.living_room_dynalite_light:
+        state: "on"
+        brightness: 102
+
+  - name: Living Room Movie Mode
+    id: living_room_movie_mode
+    entities:
+      light.living_room_dynalite_light:
+        state: "on"
+        brightness: 26
