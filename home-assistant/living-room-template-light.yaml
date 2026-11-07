@@ -1,0 +1,38 @@
+
+# Virtual Dynalite-style dimmable light
+# Uses input_number.living_room_dimmer_level as its state.
+
+template:
+  - light:
+      - name: Living Room Dynalite Light
+        unique_id: living_room_dynalite_light
+
+        state: >
+          {{ states('input_number.living_room_dimmer_level') | float(0) > 0 }}
+
+        level: >
+          {{ (states('input_number.living_room_dimmer_level')
+              | float(0) * 255 / 100) | round(0) | int }}
+
+        turn_on:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.living_room_dimmer_level
+            data:
+              value: 100
+
+        turn_off:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.living_room_dimmer_level
+            data:
+              value: 0
+
+        set_level:
+          - action: input_number.set_value
+            target:
+              entity_id: input_number.living_room_dimmer_level
+            data:
+              value: >
+                {{ (brightness | float(0) * 100 / 255)
+                    | round(0) | int }}
