@@ -1,0 +1,12 @@
+# Virtual Dynalite-style dimming helper
+# Represents a lighting channel with 0–100% brightness.
+
+input_number:
+  living_room_dimmer_level:
+    name: Living Room Dimmer Level
+    min: 0
+    max: 100
+    step: 1
+    unit_of_measurement: "%"
+    icon: mdi:lightbulb-on-outline
+
