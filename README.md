@@ -136,3 +136,9 @@ Over eight years of professional experience in lighting control, building automa
 Technical experience includes Philips Dynalite, KNX, DALI, BACnet, Zigbee, Z-wave, Matter,IoT lighting automation, and building management system integration.
 
 This project represents an exploration of how practical building automation experience can be combined with locally hosted AI to develop more intuitive smart home systems.
+
+## Video Demonstration
+
+Watch my complete Sanctuary AI Smart Lighting Prototype:
+
+[▶ Watch Demo Video](Demo%20Video/Sanctuary_Portfolio.mp4)
